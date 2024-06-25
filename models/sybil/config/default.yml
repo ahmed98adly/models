@@ -1,0 +1,19 @@
+general:
+  data_base_dir: /app/data
+  version: 1.0
+  description: run sybil pipeline
+
+execute:
+- DicomImporter
+- SybilRunner
+- DataOrganizer
+
+modules:
+  DicomImporter:
+    meta: 
+      mod: '%Modality'
+
+  DataOrganizer:
+    targets:
+      - csv-->[i:sid]/sybil.csv
+
