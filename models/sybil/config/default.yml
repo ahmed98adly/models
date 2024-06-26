@@ -6,6 +6,7 @@ general:
 execute:
 - DicomImporter
 - SybilRunner
+- ReportExporter
 - DataOrganizer
 
 modules:
@@ -13,7 +14,15 @@ modules:
     meta: 
       mod: '%Modality'
 
+  ReportExporter:
+    format: compact
+    includes:
+      - data: sybilscores
+        label: Sybil_Scores_6years
+        value: value
+
   DataOrganizer:
     targets:
-      - csv-->[i:sid]/sybil.csv
+      - json:mod=report-->[i:sid]/sybil_scores_6years.json
+
 
