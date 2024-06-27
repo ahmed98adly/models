@@ -31,7 +31,7 @@ class SybilRunner(Module):
       
         # import sybil model
         from sybil import Serie, Sybil
-
+ 
         # Load a trained model
         model = Sybil("sybil_ensemble", cache = "~/.sybil/src/checkpoints") 
 
@@ -40,4 +40,4 @@ class SybilRunner(Module):
     
         # Get risk scores and save it into json file
         serie = Serie(dcm_images)
-        SybilScores.value = model.predict([serie]) # 6 outputs: cancer risk within 1-6 years
+        SybilScores.value = model.predict([serie]) # 6 outputs: cancer risk prediction within 1-6 years

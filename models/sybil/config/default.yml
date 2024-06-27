@@ -24,5 +24,3 @@ modules:
   DataOrganizer:
     targets:
       - json:mod=report-->[i:sid]/sybil_scores_6years.json
-
-
