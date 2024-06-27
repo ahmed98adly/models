@@ -14,7 +14,7 @@ RUN buildutils/download_weights.sh \
 
 ENV WEIGHTS_DIR="/root/.cache/torch/hub/checkpoints/"
 ENV WEIGHTS_URL="https://download.pytorch.org/models/r3d_18-b3b3357e.pth"
-ENV WEIGHTS_FN="r3d_18-b3b3357e.pth"
+ENV WEIGHTS_FN="r3d_18-b3b3357e.pth" 
 
 RUN wget --directory-prefix ${WEIGHTS_DIR} ${WEIGHTS_URL}
 
