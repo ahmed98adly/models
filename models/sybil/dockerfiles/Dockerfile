@@ -7,9 +7,19 @@ RUN pip install torchvision==0.14.1+cu117 -f https://download.pytorch.org/whl/to
 
 RUN pip install git+https://github.com/reginabarzilaygroup/Sybil.git
 
-# load model definition
-ARG MHUB_MODELS_REPO
-RUN buildutils/import_mhub_model.sh sybil ${MHUB_MODELS_REPO}
+RUN buildutils/download_weights.sh \
+    ~/.sybil/src/checkpoints \
+    https://github.com/reginabarzilaygroup/Sybil/releases/download/v1.0.3/sybil_checkpoints.zip 
+    
+
+ENV WEIGHTS_DIR="/root/.cache/torch/hub/checkpoints/"
+ENV WEIGHTS_URL="https://download.pytorch.org/models/r3d_18-b3b3357e.pth"
+ENV WEIGHTS_FN="r3d_18-b3b3357e.pth"
+
+RUN wget --directory-prefix ${WEIGHTS_DIR} ${WEIGHTS_URL}
+
+#  /root/.sybil/src/checkpoints/sybil_ensemble.p  
+  
 
 # specify entrypoint
 ENTRYPOINT ["mhub.run"]

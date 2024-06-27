@@ -9,9 +9,9 @@ Email:  ahmed.hassan@maastrichtuniversity.nl
 -------------------------------------------------
 """
 
+from ast import mod
 import os, subprocess, shutil, json
 from mhubio.core import Instance, InstanceData, IO, Module, ValueOutput, Meta
-
 
 @ValueOutput.Name('sybilscores')
 @ValueOutput.Meta(Meta(key="value"))
@@ -21,7 +21,6 @@ from mhubio.core import Instance, InstanceData, IO, Module, ValueOutput, Meta
 class SybilScores(ValueOutput):
    pass
 
-
 class SybilRunner(Module):
     
     @IO.Instance()
@@ -29,19 +28,16 @@ class SybilRunner(Module):
     @IO.OutputData('sybilscores', SybilScores, data='in_data', the='sybil scores')
 
     def task(self, instance: Instance, in_data: InstanceData, sybilscores: SybilScores) -> None: 
-        
+      
         # import sybil model
         from sybil import Serie, Sybil
 
         # Load a trained model
-        model = Sybil("sybil_ensemble")
+        model = Sybil("sybil_ensemble", cache = "~/.sybil/src/checkpoints") 
 
         # get dicom files for single instance
         dcm_images = [os.path.join(in_data.abspath, f) for f in os.listdir(in_data.abspath) if f.endswith('.dcm')]
     
         # Get risk scores and save it into json file
         serie = Serie(dcm_images)
-        SybilScores.value = model.predict([serie])
-
-
-        
+        SybilScores.value = model.predict([serie]) # 6 outputs: cancer risk within 1-6 years
