@@ -18,9 +18,6 @@ ENV WEIGHTS_FN="r3d_18-b3b3357e.pth"
 
 RUN wget --directory-prefix ${WEIGHTS_DIR} ${WEIGHTS_URL}
 
-#  /root/.sybil/src/checkpoints/sybil_ensemble.p  
-  
-
 # specify entrypoint
 ENTRYPOINT ["mhub.run"]
 CMD ["--config", "/app/models/sybil/config/default.yml"]
