@@ -1,0 +1,124 @@
+{
+    "id": "",
+    "name": "sybil_model",
+    "title": "Sybil Lung Cancer Risk Prediction Model",
+
+    "summary": {
+        "description": "Sybil is a 3D convolutional neural network to predict future lung cancer risk from LDCT. Sybil's outcome is a set of six scores representing calibrated probabilities of lung cancer diagnosis extending 1 to 6 years following the LDCT.",
+      
+        "inputs": [
+         {
+          "label": "Chest LDCT",
+          "description": "DICOM files of LDCT",
+          "format": "DICOM",
+          "modality": "CT",
+          "bodypartexamined": "Chest",
+          "slicethickness": "2.5mm",
+          "non-contrast": true,
+          "contrast": false
+        }
+      ],
+
+        "outputs": [
+        {
+          "type": "Prediction",
+          "valueType": "number",
+          "label": "Six lung cancer risk scores",
+          "description": "Calibrated probabilities of lung cancer diagnosis extending 1 to 6 years following the LDCT.",
+          "classes": []
+        }
+        ],
+
+
+        "model": {
+          "architecture": "3D convolutional neural network",
+          "training": "supervised",
+          "cmpapproach": "3D"
+      },
+        "data": {
+          "training": {
+          "vol_samples": 28162
+        },
+        "evaluation": {
+          "vol_samples": 27383
+        },
+         "public": true,
+         "external": false
+      }
+    },
+
+
+    "details": {
+        "name": "Sybil",
+        "version": "1.0.0",
+        "devteam": "Regina Barzilay group - AI For Healthcare and Life Sciences, Massachusetts Institute of Technology MIT, USA)",
+        "type": "trained end-to-end",
+        "date": {
+          "weights": "20/04/2023",
+          "code": "20/04/2023",
+          "pub": "20/04/2023"
+        },
+
+        "cite": "Mikhael, Peter G., et al. 'Sybil: a validated deep learning model to predict future lung cancer risk from a single low-dose chest computed tomography.' Journal of Clinical Oncology 41.12 (2023): 2191-2200.",
+        "license": {
+          "code": "MIT",
+          "weights": ""
+        },
+
+        "publications": [
+          {
+            "title": "Sybil: A Validated Deep Learning Model to Predict Future Lung Cancer Risk From a Single Low-Dose Chest Computed Tomography",
+            "uri": "https://ascopubs.org/doi/full/10.1200/JCO.22.01345"
+          }
+       ],
+
+        "github": "https://github.com/reginabarzilaygroup/Sybil",
+        "zenodo": "",
+        "colab": "",
+        "slicer": false
+        },
+
+
+        "info": {
+         "use": {
+          "title": "Intended Use",
+          "text": "Sybil Model is intended to predict future lung cancer risk from Low-Dose Chest Computed Tomography LDCT."
+        },
+        "analyses": {
+          "title": "Quantitative Analyses",
+          "text": "The model's performance was assessed using the AUC metric in three different datasets, including smokers and non-smokers. Refer to the publication for more details [1].",
+          "references": [
+            {
+              "label": "Sybil: A Validated Deep Learning Model to Predict Future Lung Cancer Risk From a Single Low-Dose Chest Computed Tomography",
+              "uri": "https://ascopubs.org/doi/full/10.1200/JCO.22.01345"
+            }
+          ]
+        },
+
+        "evaluation": {
+          "title": "Evaluation Data",
+          "text": "The evaluation dataset consists of 27383 scans, from three different datasets: a heldout set of 6,282 LDCTs from National lung screening trial NLST participants [1], 8,821 LDCTs from Massachusetts General Hospital (MGH), and 12,280 LDCTs from Chang Gung Memorial Hospital (CGMH, which included people with a range of smoking history including nonsmokers).",
+          "references": [
+            {
+              "label": "National Lung Screening Trial Dataset",
+              "uri": "https://www.cancerimagingarchive.net/collection/nlst/"
+            }
+        ]
+        },
+
+        "training": {
+            "title": "Training Data",
+            "text": "The training dataset (National Lung Screening Trial - NLST) [1] contains unique 28162 CT scans acquired from 9646 different patients acquired with different combinations of scanner manufacturer, convolution kernel, and slice thickness. The complete reporting on the training dataset can be found in the publication [2].",
+            "references": [
+              {
+                "label": "National Lung Screening Trial Dataset",
+                "uri": "https://www.cancerimagingarchive.net/collection/nlst/"
+              },
+              {
+              "label": "Sybil: A Validated Deep Learning Model to Predict Future Lung Cancer Risk From a Single Low-Dose Chest Computed Tomography",
+              "uri": "https://ascopubs.org/doi/full/10.1200/JCO.22.01345"
+              }
+            ]
+        }
+    }
+}
