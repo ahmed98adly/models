@@ -1,0 +1,26 @@
+general:
+  data_base_dir: /app/data
+  version: 1.0
+  description: run sybil pipeline
+
+execute:
+- DicomImporter
+- SybilRunner
+- ReportExporter
+- DataOrganizer
+
+modules:
+  DicomImporter:
+    meta: 
+      mod: '%Modality'
+
+  ReportExporter:
+    format: compact
+    includes:
+      - data: sybilscores
+        label: Sybil_Scores_6years
+        value: value
+  
+  DataOrganizer:
+    targets:
+      - json:mod=report-->[i:sid]/sybil_cancer_risk_1to6years_after_CT.json
