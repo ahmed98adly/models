@@ -33,7 +33,7 @@ class SybilRunner(Module):
         from sybil import Serie, Sybil
  
         # Load a trained model
-        model = Sybil("sybil_ensemble", cache = "~/.sybil/src/checkpoints") 
+        model = Sybil("sybil_ensemble", cache = "~/.sybil_cancer/src/checkpoints") 
 
         # get dicom files for single instance
         dcm_images = [os.path.join(in_data.abspath, f) for f in os.listdir(in_data.abspath) if f.endswith('.dcm')]

@@ -23,4 +23,4 @@ RUN wget --directory-prefix ${WEIGHTS_DIR} ${WEIGHTS_URL}
 
 # specify entrypoint
 ENTRYPOINT ["mhub.run"]
-CMD ["--config", "/app/models/sybil/config/default.yml"]
+CMD ["--config", "/app/models/sybil_cancer/config/default.yml"]
